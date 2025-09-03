@@ -23,20 +23,22 @@ import "../style/index.css";
     }
  */
 function render(variables = {}) {
-  console.log("These are the current variables: ", variables); // print on the console
-
+  // Cover
   let cover = variables.includeCover
     ? `<div class="cover"><img src="${variables.background}" /></div>`
     : "<div class='cover'></div>";
 
+  // Nombre completo y role
   let fullName = `${variables.name || "First Name"} ${variables.lastName ||
     "Last Name"}`;
   let role = variables.role || "Role";
   let location = `${variables.city || "City"}, ${variables.country ||
     "Country"}`;
 
+  // Posición de redes sociales
   let socialPosition = variables.socialMediaPosition || "position-right";
 
+  // Redes sociales dinámicas
   let twitter = variables.twitter
     ? `<li><a href="https://twitter.com/${variables.twitter}"><i class="fab fa-twitter"></i></a></li>`
     : "";
@@ -49,12 +51,12 @@ function render(variables = {}) {
   let instagram = variables.instagram
     ? `<li><a href="https://instagram.com/${variables.instagram}"><i class="fab fa-instagram"></i></a></li>`
     : "";
-  if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
-  // reset the website body with the new html output
-  document.querySelector("#widget_content").innerHTML = `<div class="widget">
-    ${cover}
-    <img src="${variables.avatarURL}" class="photo" />
+  // Render final
+  document.querySelector("#widget_content").innerHTML = `
+    <div class="widget">
+      ${cover}
+      <img src="${variables.avatarURL}" class="photo" />
       <h1>${fullName}</h1>
       <h2>${role}</h2>
       <h3>${location}</h3>
@@ -62,7 +64,7 @@ function render(variables = {}) {
         ${twitter}${github}${linkedin}${instagram}
       </ul>
     </div>
-    `;
+  `;
 }
 
 /**
